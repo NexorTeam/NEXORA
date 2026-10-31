@@ -1,0 +1,98 @@
+@startuml
+hide circle
+skinparam linetype ortho
+entity "User" as User {
+  * id : PK
+  --
+  username : unique
+  email
+  password_hash
+  role
+  is_active
+}
+entity "AthleteProfile" as Athlete {
+  * id : PK
+  --
+  user_id : FK
+  goals
+}
+entity "TrainerProfile" as Trainer {
+  * id : PK
+  --
+  user_id : FK
+  specialties
+  credentials
+}
+entity "Gym" as Gym {
+  * id : PK
+  --
+  name
+  address
+  facilities
+}
+entity "Exercise" as Exercise {
+  * id : PK
+  --
+  name
+  description
+  media_url
+}
+entity "WorkoutPlan" as WorkoutPlan {
+  * id : PK
+  --
+  trainer_id : FK
+  athlete_id : FK
+  title
+  start_date
+  end_date
+  status
+}
+entity "WorkoutPlanItem" as PlanItem {
+  * id : PK
+  --
+  workout_plan_id : FK
+  exercise_id : FK
+  sets
+  reps
+  weight
+  sort_order
+}
+entity "NutritionPlan" as NutritionPlan {
+  * id : PK
+  --
+  trainer_id : FK
+  athlete_id : FK
+  title
+  start_date
+  end_date
+}
+entity "Membership" as Membership {
+  * id : PK
+  --
+  athlete_id : FK
+  gym_id : FK
+  start_date
+  end_date
+  status
+}
+entity "Payment" as Payment {
+  * id : PK
+  --
+  membership_id : FK
+  amount
+  payment_date
+  method
+  status
+}
+User ||--o| Athlete
+User ||--o| Trainer
+Trainer ||--o{ WorkoutPlan
+Athlete ||--o{ WorkoutPlan
+WorkoutPlan ||--|{ PlanItem
+Exercise ||--o{ PlanItem
+Trainer ||--o{ NutritionPlan
+Athlete ||--o{ NutritionPlan
+Athlete ||--o{ Membership
+Gym ||--o{ Membership
+Membership ||--o{ Payment
+@enduml

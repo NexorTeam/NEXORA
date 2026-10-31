@@ -1,0 +1,73 @@
+@startuml
+class User {
+  +id
+  +username
+  +email
+  +is_active
+}
+class AthleteProfile {
+  +id
+  +goals
+}
+class TrainerProfile {
+  +id
+  +specialties
+  +credentials
+}
+class Gym {
+  +id
+  +name
+  +address
+  +facilities
+}
+class Exercise {
+  +id
+  +name
+  +description
+  +media_url
+}
+class WorkoutPlan {
+  +id
+  +title
+  +start_date
+  +end_date
+  +status
+}
+class WorkoutPlanItem {
+  +id
+  +sets
+  +reps
+  +weight
+  +order
+}
+class NutritionPlan {
+  +id
+  +title
+  +start_date
+  +end_date
+}
+class Membership {
+  +id
+  +start_date
+  +end_date
+  +status
+}
+class Payment {
+  +id
+  +amount
+  +payment_date
+  +method
+  +status
+}
+User "1" -- "0..1" AthleteProfile
+User "1" -- "0..1" TrainerProfile
+Gym "1" -- "0..*" Membership
+AthleteProfile "1" -- "0..*" Membership
+TrainerProfile "1" -- "0..*" WorkoutPlan : creates
+AthleteProfile "1" -- "0..*" WorkoutPlan : assigned
+WorkoutPlan "1" *-- "1..*" WorkoutPlanItem
+Exercise "1" -- "0..*" WorkoutPlanItem
+TrainerProfile "1" -- "0..*" NutritionPlan : creates
+AthleteProfile "1" -- "0..*" NutritionPlan : assigned
+Membership "1" -- "0..*" Payment
+@enduml

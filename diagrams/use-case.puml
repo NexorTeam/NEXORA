@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+actor "مدیر باشگاه\nGym Manager" as Manager
+actor "مربی\nTrainer" as Trainer
+actor "ورزشکار\nAthlete" as Athlete
+rectangle "NEXORA" {
+  usecase "مدیریت اعضا\nManage Members" as UC1
+  usecase "مدیریت مربیان\nManage Trainers" as UC2
+  usecase "مدیریت اشتراک‌ها\nManage Memberships" as UC3
+  usecase "ثبت پرداخت‌ها\nRecord Payments" as UC4
+  usecase "گزارش‌گیری\nView Reports" as UC5
+  usecase "مدیریت کتابخانه حرکات\nManage Exercises" as UC6
+  usecase "طراحی برنامه تمرینی\nCreate Workout Plan" as UC7
+  usecase "طراحی برنامه تغذیه\nCreate Nutrition Plan" as UC8
+  usecase "مشاهده برنامه‌ها\nView Assigned Plans" as UC9
+  usecase "مشاهده سوابق شخصی\nView Personal History" as UC10
+  usecase "ورود و خروج\nSign In / Out" as UC11
+}
+Manager --> UC1
+Manager --> UC2
+Manager --> UC3
+Manager --> UC4
+Manager --> UC5
+Manager --> UC6
+Trainer --> UC6
+Trainer --> UC7
+Trainer --> UC8
+Trainer --> UC9
+Athlete --> UC9
+Athlete --> UC10
+Manager --> UC11
+Trainer --> UC11
+Athlete --> UC11
+@enduml
