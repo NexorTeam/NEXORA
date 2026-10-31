@@ -1,0 +1,47 @@
+@startuml
+title NEXORA - Use Case Diagram
+
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Gym Manager" as Manager
+actor "Trainer" as Trainer
+actor "Athlete" as Athlete
+
+rectangle "NEXORA Smart Gym Management System" {
+usecase "Manage Gym Profile" as UC1
+usecase "Manage Members" as UC2
+usecase "Manage Trainers" as UC3
+usecase "Manage Memberships" as UC4
+usecase "Record Payments" as UC5
+usecase "View Reports" as UC6
+
+usecase "Manage Workout Plans" as UC7
+usecase "Manage Nutrition Plans" as UC8
+usecase "View Assigned Plans" as UC9
+usecase "View Workout History" as UC10
+usecase "Manage Exercise Library" as UC11
+usecase "Authenticate User" as UC12
+
+}
+
+Manager --> UC1
+Manager --> UC2
+Manager --> UC3
+Manager --> UC4
+Manager --> UC5
+Manager --> UC6
+Manager --> UC11
+
+Trainer --> UC7
+Trainer --> UC8
+Trainer --> UC11
+
+Athlete --> UC9
+Athlete --> UC10
+
+Manager --> UC12
+Trainer --> UC12
+Athlete --> UC12
+
+@enduml
